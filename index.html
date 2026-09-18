@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>Un regalo especial para ti</title>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="sparkles" id="sparkles-container"></div>
+
+    <!-- Botón flotante para volver a la pantalla anterior -->
+    <button class="back-nav-btn" id="back-nav-btn" onclick="prevStep()" aria-label="Volver atrás" title="Volver atrás">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+        </svg>
+    </button>
+
+    <!-- Botón flotante de música (Lil Peep - Right Here) -->
+    <button class="music-btn" id="music-btn" onclick="toggleMusic()" aria-label="Reproducir o pausar música">
+        <svg class="music-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+        </svg>
+    </button>
+    <audio id="bg-music" loop preload="auto">
+        <source src="audio/lil_peep.mp3" type="audio/mp3">
+        <source src="audio/Lil Peep - right here (feat. Horse Head) (Official Audio).mp3" type="audio/mp3">
+    </audio>
+
+    <main class="presentation-container">
+        <!-- Indicador de progreso de 5 pasos -->
+        <div class="progress-bar">
+            <div class="progress-dot active" id="dot-1"></div>
+            <div class="progress-dot" id="dot-2"></div>
+            <div class="progress-dot" id="dot-3"></div>
+            <div class="progress-dot" id="dot-4"></div>
+            <div class="progress-dot" id="dot-5"></div>
+        </div>
+
+        <div class="card-wrapper">
+            <!-- Pantalla 1: La promesa con botón travieso que escapa -->
+            <section class="slide-card active" id="card-1">
+                <div>
+                    <span class="badge">
+                        <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        Holaaa mi niña ❤️‍🩹❤️‍🩹❤️‍🩹
+                    </span>
+
+                    <div class="icon-hero">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                            <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/>
+                        </svg>
+                    </div>
+
+                    <h1 class="title">Antes de empezar...</h1>
+                    <p class="description">¿Te quedarás conmigo siempre, verdad?</p>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="goToStep(2)">
+                        <span>¡Sí, siempre!</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 6 9 17l-5-5"/>
+                        </svg>
+                    </button>
+                    <div class="no-btn-slot">
+                        <button class="btn btn-secondary" id="no-btn" onmouseenter="moveNoButton(event)" onmousedown="moveNoButton(event)" ontouchstart="moveNoButton(event)" onclick="moveNoButton(event)">
+                            <span>No</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pantalla 2: Pregunta de cumpleaños -->
+            <section class="slide-card" id="card-2">
+                <!-- Fotos de ambientación flotantes (fuera del contenido del card) -->
+                <div class="ambient-photos-container">
+                    <div class="ambient-photo pos-top-left rot-neg">
+                        <img src="img/ambientar/amb-1.jpeg" alt="Recuerdo">
+                    </div>
+                    <div class="ambient-photo pos-bottom-right rot-pos">
+                        <img src="img/ambientar/amb-2.jpeg" alt="Recuerdo">
+                    </div>
+                </div>
+
+                <div>
+                    <span class="badge">
+                        <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/>
+                        </svg>
+                        Espero te guste me tomo tiempo hahah...
+                    </span>
+
+                    <div class="icon-hero">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/>
+                            <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2.5-2 4-2 2-1 2-1"/>
+                            <path d="M2 21h20"/>
+                            <path d="M7 8v3"/>
+                            <path d="M12 8v3"/>
+                            <path d="M17 8v3"/>
+                            <path d="M7 4h.01"/>
+                            <path d="M12 4h.01"/>
+                            <path d="M17 4h.01"/>
+                        </svg>
+                    </div>
+
+                    <h1 class="title">¡Hola! Hoy es un día muy especial...</h1>
+                    <p class="description">¿Acaso sabes qué se celebra el día de hoy?</p>
+                    <div class="toast-feedback" id="feedback-2">
+                        ¡¿Cómo que normal babosa?! ¡Hoy cumple la persona más especial y linda del mundo (yo 🙂‍↕️)!
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="handleCorrectAnswer(2)">
+                        <span>¡Nuestro cumple!</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="handlePlayfulAnswer(2)">
+                        <span>Un día cualquiera</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Pantalla 3: Mensaje de cumpleaños para mejor amiga -->
+            <section class="slide-card" id="card-3">
+                <!-- Fotos de ambientación flotantes -->
+                <div class="ambient-photos-container">
+                    <div class="ambient-photo pos-top-right rot-pos">
+                        <img src="img/ambientar/amb-3.jpeg" alt="Recuerdo">
+                    </div>
+                    <div class="ambient-photo pos-bottom-left rot-neg">
+                        <img src="img/ambientar/amb-4.jpeg" alt="Recuerdo">
+                    </div>
+                </div>
+
+                <div>
+                    <span class="badge">
+                        <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        Para mi mejor amiga, LA MEJOR 
+                    </span>
+
+                    <div class="icon-hero">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+
+                    <h1 class="title">¡Feliz Cumpleaños!</h1>
+                    <p class="description">
+                        Quiero decirte que eres una de las personas que mas aprecio en el mundo y que te amo mucho y feliz cumpleaños 🤪, aunque ya no hablemos tanto sabes que siempre estare ahi para ti, hice esto para recordarte lo importante que eres para mi, me demostraste que es ser una persona en la cual puedo contarle cualquier babosada y siempre tendra oidos para escucharme sin juzgarme, me salvaste tantas veces que ya ni puedo contarlas espero que tengas un dia maravilloso, y que la pases con las personas que mas amas, y perdon por no haberte regalado a tu ex XD hahah pero ya enserio gracias por ser la persona que eres no cambies, recuerda que siempre estare para ti hablemos o no recuerda!!!
+                    </p>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="goToStep(4)">
+                        <span>Continuar</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Pantalla 4: Mini Cuestionario divertido -->
+            <section class="slide-card" id="card-4">
+                <!-- Fotos de ambientación flotantes -->
+                <div class="ambient-photos-container">
+                    <div class="ambient-photo pos-top-left rot-neg">
+                        <img src="img/ambientar/amb-5.jpeg" alt="Recuerdo">
+                    </div>
+                    <div class="ambient-photo pos-top-right rot-pos">
+                        <img src="img/ambientar/amb-6.jpeg" alt="Recuerdo">
+                    </div>
+                    <div class="ambient-photo pos-bottom-right rot-neg">
+                        <img src="img/ambientar/amb-7.jpeg" alt="Recuerdo">
+                    </div>
+                </div>
+
+                <div>
+                    <span class="badge">
+                        <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        Siempre estuviste ahí
+                    </span>
+
+                    <div class="icon-hero">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                            <path d="M12 2v2"/>
+                            <path d="m4.93 4.93 1.41 1.41"/>
+                            <path d="m19.07 4.93-1.41 1.41"/>
+                            <path d="M2 12h2"/>
+                            <path d="M20 12h2"/>
+                        </svg>
+                    </div>
+
+                    <h1 class="title">NO ESTARAS SOLA MIENTRAS YO VIVA</h1>
+                    <p class="description">
+                        Recuerdas la promesa de los 30?... hahah no mentira, te dedico esta porque de alguna manera siempre quiero estar en tu vida 
+                    </p>
+
+                    <!-- Tarjeta interactiva de letra con traductor dinámico -->
+                    <div class="interactive-lyrics-card" onclick="toggleLyricsTranslation()" id="lyrics-card" title="Toca para traducir">
+                        <div class="lyrics-header-bar">
+                            <span class="lyrics-lang-pill" id="lyrics-lang-pill">English</span>
+                            <span class="lyrics-tap-hint">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                                </svg>
+                                Oprime para traducir
+                            </span>
+                        </div>
+
+                        <div class="lyrics-content-wrapper">
+                            <!-- Versión 1: Inglés Original -->
+                            <div class="lyrics-variant active" id="lyric-var-0">
+                                <p class="lyric-line-quote">Baby, how you doin'? I know you're not doin' the best</p>
+                                <p class="lyric-line-quote">But I'm here, I'll always be here</p>
+                                <p class="lyric-line-quote">Tell me if you need me and call me if you feelin' alone</p>
+                                <p class="lyric-line-quote">'Cause I'm here, I'm always right here</p>
+                            </div>
+
+                            <!-- Versión 2: Español -->
+                            <div class="lyrics-variant" id="lyric-var-1">
+                                <p class="lyric-line-quote">Nena, ¿cómo estás? Sé que no la estás pasando muy bien</p>
+                                <p class="lyric-line-quote">Pero estoy aquí, siempre voy a estar aquí</p>
+                                <p class="lyric-line-quote">Dime si me necesitas y llámame si te sientes sola</p>
+                                <p class="lyric-line-quote">Porque estoy aquí, siempre estare aqui</p>
+                            </div>
+
+                            <!-- Versión 3: Resumen -->
+                            <div class="lyrics-variant" id="lyric-var-2">
+                                <p class="lyric-line-quote">Resumen, te quiero babosa</p>
+                                <p class="lyric-line-quote">Yo siempre estare para tí ❤️‍🔥❤️‍🔥</p>
+                                <p class="lyric-line-quote">No lo olvides!</p>
+                            </div>
+                        </div>
+
+                        <div class="lyrics-footer-bar">
+                            <span class="song-credit">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 18V5l12-2v13"/>
+                                    <circle cx="6" cy="18" r="3"/>
+                                    <circle cx="18" cy="16" r="3"/>
+                                </svg>
+                                right here -Lil Peep
+                            </span>
+                            <div class="lyrics-dots">
+                                <span class="l-dot active" id="ldot-0"></span>
+                                <span class="l-dot" id="ldot-1"></span>
+                                <span class="l-dot" id="ldot-2"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="handleCorrectAnswer(4)">
+                        <span>Continuemos!!</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 6 9 17l-5-5"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-secondary" onclick="handleCorrectAnswer(4)">
+                        <span>Te odio!!!</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Pantalla 5: Álbum de Fotos (Estilo Editorial / Moodboard) & Regalo -->
+            <section class="slide-card album-stage" id="card-5">
+                <div class="album-header">
+                    <span class="badge">
+                        <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        Como pasa el tiempo
+                    </span>
+                    <h1 class="title">Recuerditos ❤️‍🩹</h1>
+                    <p class="description photo-desc">
+                        Mira se que no tenemos muchas fotos juntos pero las pocas que tengo siempre me hacen recordar todo lo que pasamos y aunque no parezca ya paso un monton de tienpo ¡Gracias por estar siempre!
+                    </p>
+                </div>
+
+                <!-- Composición de Álbum Idéntica a la Referencia -->
+                <div class="editorial-album">
+                    <!-- Fondos decorativos geométricos -->
+                    <div class="album-deco-circle"></div>
+                    <div class="album-deco-dots"></div>
+
+                    <!-- Cuadrícula Base de Fotos (Capa Inferior) -->
+                    <div class="album-base-grid">
+                        <div class="tile tile-top-left" onclick="openLightbox('img/nosotros/IMG_20220709_214543.jpg')">
+                            <img src="img/nosotros/IMG_20220709_214543.jpg" alt="Foto juntos 1" loading="lazy">
+                        </div>
+                        <div class="tile tile-top-right" onclick="openLightbox('img/nosotros/IMG_20221031_234154_373.jpg')">
+                            <img src="img/nosotros/IMG_20221031_234154_373.jpg" alt="Foto juntos 2" loading="lazy">
+                        </div>
+                        <div class="tile tile-left-portrait" onclick="openLightbox('img/nosotros/IMG_0084.jpg')">
+                            <img src="img/nosotros/IMG_0084.jpg" alt="Foto juntos 3" loading="lazy">
+                        </div>
+                        <div class="tile tile-center-fill" onclick="openLightbox('img/nosotros/IMG_20230722_004559.jpg')">
+                            <img src="img/nosotros/IMG_20230722_004559.jpg" alt="Foto juntos 4" loading="lazy">
+                        </div>
+                        <div class="tile tile-bottom-full" onclick="openLightbox('img/nosotros/IMG_20260227_151119.jpg')">
+                            <img src="img/nosotros/IMG_20260227_151119.jpg" alt="Foto juntos 5" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Bloque Flotante Superpuesto (Capa Superior con Sombra Profunda como en la referencia) -->
+                    <div class="album-floating-strip">
+                        <div class="strip-tile strip-1" onclick="openLightbox('img/nosotros/IMG_0920.jpg')">
+                            <img src="img/nosotros/IMG_0920.jpg" alt="Foto juntos 6" loading="lazy">
+                        </div>
+                        <div class="strip-tile strip-2" onclick="openLightbox('img/nosotros/IMG_20260227_162113.jpg')">
+                            <img src="img/nosotros/IMG_20260227_162113.jpg" alt="Foto juntos 7" loading="lazy">
+                        </div>
+                        <div class="strip-tile strip-3" onclick="openLightbox('img/nosotros/IMG_0091.jpg')">
+                            <img src="img/nosotros/IMG_0091.jpg" alt="Foto juntos 8" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions album-actions">
+                    <a href="flower.html" class="btn btn-gift" id="gift-btn">
+                        <span>Por ultimo, escucha letra por letra</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal Lightbox para ampliar cualquier foto -->
+    <div class="lightbox-modal" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button type="button" class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar imagen">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <img src="" alt="Foto ampliada" class="lightbox-img" id="lightbox-img">
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        // Reproductor de música de fondo (Lil Peep - Right Here)
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        let musicStarted = false;
+
+        function playMusic() {
+            if (!bgMusic) return;
+            bgMusic.play().then(() => {
+                musicStarted = true;
+                if (musicBtn) musicBtn.classList.add('playing');
+            }).catch(() => {});
+        }
+
+        function toggleMusic() {
+            if (!bgMusic) return;
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    if (musicBtn) musicBtn.classList.add('playing');
+                }).catch(() => {});
+            } else {
+                bgMusic.pause();
+                if (musicBtn) musicBtn.classList.remove('playing');
+            }
+        }
+
+        // Inicia la música con cualquier interacción del usuario
+        function tryAutoplay() {
+            if (!musicStarted && bgMusic && bgMusic.paused) {
+                playMusic();
+            }
+        }
+
+        let currentLyricIdx = 0;
+        const lyricLabels = ["English", "Español", "Yop"];
+
+        function toggleLyricsTranslation() {
+            const prevVariant = document.getElementById(`lyric-var-${currentLyricIdx}`);
+            const prevDot = document.getElementById(`ldot-${currentLyricIdx}`);
+            if (prevVariant) prevVariant.classList.remove('active');
+            if (prevDot) prevDot.classList.remove('active');
+
+            currentLyricIdx = (currentLyricIdx + 1) % 3;
+
+            const nextVariant = document.getElementById(`lyric-var-${currentLyricIdx}`);
+            const nextDot = document.getElementById(`ldot-${currentLyricIdx}`);
+            const pill = document.getElementById('lyrics-lang-pill');
+
+            if (nextVariant) nextVariant.classList.add('active');
+            if (nextDot) nextDot.classList.add('active');
+            if (pill) pill.textContent = lyricLabels[currentLyricIdx];
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                goToStep(currentStep - 1);
+            }
+        }
+
+        function goToStep(step) {
+            if (step < 1 || step > totalSteps) return;
+
+            tryAutoplay();
+
+            const currentCard = document.getElementById(`card-${currentStep}`);
+            if (currentCard) {
+                currentCard.classList.remove('active');
+            }
+
+            currentStep = step;
+
+            const nextCard = document.getElementById(`card-${currentStep}`);
+            if (nextCard) {
+                nextCard.classList.add('active');
+            }
+
+            const container = document.querySelector('.presentation-container');
+            if (container) {
+                if (step === 5) {
+                    container.classList.add('album-mode');
+                } else {
+                    container.classList.remove('album-mode');
+                }
+            }
+
+            // Controlar visibilidad del botón flotante de volver atrás
+            const backBtn = document.getElementById('back-nav-btn');
+            if (backBtn) {
+                if (step > 1) {
+                    backBtn.classList.add('visible');
+                } else {
+                    backBtn.classList.remove('visible');
+                }
+            }
+
+            for (let i = 1; i <= totalSteps; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) {
+                    if (i <= currentStep) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                }
+            }
+
+            const noBtn = document.getElementById('no-btn');
+            if (noBtn) {
+                if (step === 1) {
+                    noBtn.style.display = '';
+                    noBtn.classList.remove('is-floating');
+                    noBtn.style.left = '';
+                    noBtn.style.top = '';
+                    noBtn.style.right = '';
+                    noBtn.style.bottom = '';
+                    noBtn.style.transform = '';
+                    noBtn.style.transition = '';
+                } else {
+                    noBtn.style.display = 'none';
+                }
+            }
+
+            triggerConfetti();
+        }
+
+        function handleCorrectAnswer(fromStep) {
+            triggerConfetti();
+            goToStep(fromStep + 1);
+        }
+
+        function handlePlayfulAnswer(fromStep) {
+            const feedback = document.getElementById(`feedback-${fromStep}`);
+            if (feedback) {
+                feedback.style.display = 'block';
+            }
+            triggerConfetti();
+            setTimeout(() => {
+                goToStep(fromStep + 1);
+            }, 1400);
+        }
+
+        // Botón "No" que huye libremente por toda la pantalla sin cambiar de tamaño ni salirse
+        function moveNoButton(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            const btn = document.getElementById('no-btn');
+            if (!btn) return;
+
+            // Bloquear tamaño exacto para que no cambie ni se deforme
+            btn.classList.add('is-floating');
+
+            const btnWidth = 110;
+            const btnHeight = 46;
+
+            // Márgenes de seguridad contra bordes, barra de navegación y notch
+            const safePaddingX = 25;
+            const safePaddingY = 70;
+
+            const vw = Math.max(300, window.innerWidth || document.documentElement.clientWidth);
+            const vh = Math.max(400, window.innerHeight || document.documentElement.clientHeight);
+
+            const minX = safePaddingX;
+            const maxX = Math.max(minX, vw - btnWidth - safePaddingX);
+
+            const minY = safePaddingY;
+            const maxY = Math.max(minY, vh - btnHeight - safePaddingY);
+
+            const randomX = Math.floor(minX + Math.random() * (maxX - minX));
+            const randomY = Math.floor(minY + Math.random() * (maxY - minY));
+
+            btn.style.transition = 'left 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.22s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            btn.style.left = `${randomX}px`;
+            btn.style.top = `${randomY}px`;
+            btn.style.right = 'auto';
+            btn.style.bottom = 'auto';
+            btn.style.transform = 'none';
+        }
+
+        // --- Funciones Lightbox ---
+        function openLightbox(src) {
+            const modal = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            if (modal && img) {
+                img.src = src;
+                modal.classList.add('active');
+            }
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Efecto de partículas doradas flotantes
+        function createSparkles() {
+            const container = document.getElementById('sparkles-container');
+            if (!container) return;
+            const count = 25;
+            for (let i = 0; i < count; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'sparkle-dot';
+                dot.style.left = `${Math.random() * 100}%`;
+                dot.style.top = `${Math.random() * 100}%`;
+                dot.style.animationDelay = `${Math.random() * 5}s`;
+                dot.style.animationDuration = `${4 + Math.random() * 4}s`;
+                container.appendChild(dot);
+            }
+        }
+
+        // Efecto de confeti en cada paso
+        function triggerConfetti() {
+            const colors = ['#ffea00', '#ffb703', '#fb8500', '#ffffff', '#ffd000'];
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = `${Math.random() * 20}vh`;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `scale(${0.6 + Math.random() * 0.8})`;
+                confetti.style.animationDuration = `${1.8 + Math.random() * 1.5}s`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            createSparkles();
+            triggerConfetti();
+
+            // Iniciar música en el primer clic o toque en cualquier parte
+            document.addEventListener('click', () => {
+                if (!musicStarted) playMusic();
+            }, { once: true });
+            document.addEventListener('touchstart', () => {
+                if (!musicStarted) playMusic();
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>
